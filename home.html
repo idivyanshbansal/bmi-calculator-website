@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <nav class="header__nav-bar">
+        <h1 class="header__nav-bar__title">BMI Calculator</h1>
+    </nav>
+
+
+    <!-- Favicons -->
+    <link href="assets/img/favi.png" rel="icon">
+    <link href="assets/img/favi.png" rel="apple-touch-icon">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <form action="" class="input" onsubmit="return false">
+                    <h2 class="input__title input__title-1">Units</h2>
+                    <div class="input__container-height">
+                        <h3 class="input__container-height__title">Height</h3>
+                        <div class="radio-container">
+                            <input type="radio" name="height" id="metric-height" checked class="input__container-height__radio" />
+                            <label for="metric-height" class="text-medium input__container-height__label">Metric</label>
+                            <div class="check"></div>
+                        </div>
+                        <div class="radio-container">
+                            <input type="radio" name="height" id="imperial-height" class="input__container-height__radio" />
+                            <label for="imperial-height" class="text-medium input__container-height__label">Imperial</label>
+                            <div class="check"></div>
+                        </div>
+                    </div>
+                    <div class="input__container-weight">
+                        <h3 class="input__container-weight__title">Weight</h3>
+                        <div class="radio-container">
+                            <input type="radio" name="weight" id="metric-weight" checked class="input__container-weight__radio" />
+                            <label for="metric-weight" class="text-medium input__container-weight__label">Metric</label>
+                            <div class="check"></div>
+                        </div>
+                        <div class="radio-container">
+                            <input type="radio" name="weight" id="imperial-weight" class="input__container-weight__radio" />
+                            <label for="imperial-weight" class="text-medium input__container-weight__label">Imperial</label>
+                            <div class="check"></div>
+                        </div>
+                    </div>
+                    <h2 class="input__title input__title-2">Data input</h2>
+                    <div class="text-input__wrapper">
+                        <div class="input-text-label input__container-cm-ft">
+                            <input type="number" name="height-cm-ft" id="height-cm-ft" placeholder="Height" required step="0.01" min="30" max="275" class="text-small-black input-text input__container-cm-ft__number" />
+                            <label for="height-cm-ft" class="text-small input__container-cm-ft__label">cm</label>
+                        </div>
+                        <div class="input-text-label input__container-in">
+                            <input type="number" name="height-in" id="height-in" placeholder="Height" step="0.01" min="0" max="11.99" class="text-small-black input-text input__container-in__number" />
+                            <label for="height-in" class="text-small input__container-in__label">in</label>
+                        </div>
+                        <div class="input-text-label input__container-kg-lb">
+                            <input type="number" name="weight-kg-lb" id="weight-kg-lb" placeholder="Weight" required step="0.01" min="1" max="225" class="text-small-black input-text input__container-kg-lb__number" />
+                            <label for="weight-kg-lb" class="text-small input__container-kg-lb__label">kg</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="input__button" onclick="submitData()">
+                        Calculate BMI
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="column">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <div class="output">
+                    <div class="output__container">
+                        <div class="output__container__bmi-container">
+                            <p class="output__container__bmi-container_bmi-value">0</p>
+                            <p class="output__container__bmi-container_bmi-title">BMI</p>
+                            <p class="output__container__bmi-container_bmi-tag">None</p>
+                        </div>
+                        <hr class="output__container__line" />
+                        <h3 class="output__container__title text-large">Information</h3>
+                        <div class="output__container__meter-container">
+                            <div class="meter-tag-container">
+                                <span class="link-small output__container__meter-container_tag">Underweight</span>
+                                <span class="link-small output__container__meter-container_tag">Normal</span>
+                                <span class="link-small output__container__meter-container_tag">Overweight</span>
+                            </div>
+                            <span class="output__container__meter-container_meter"></span>
+                            <div class="container-meter-values">
+                                <span class="link-medium output__container__meter-container_value">16</span>
+                                <span class="link-medium output__container__meter-container_value">18.5</span>
+                                <span class="link-medium output__container__meter-container_value">25</span>
+                                <span class="link-medium output__container__meter-container_value">40</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- writing section-->
+
+
+    <section class="modal  d-flex align-items-center" id="modal">
+        <h2 class="modal__title">BMI Information</h2>
+        <p class="modal__paragraph">
+            BMI is a measure of a person's weight or overweight in terms of height and weight, and is intended to measure muscle mass. It is widely used as a general indicator of whether a person has a healthy body weight. Specifically, the value obtained in the BMI calculation is used to distinguish whether a person is underweight, underweight, obese, or obese, depending on the extent to which the distance falls.
+        </p>
+        <h2 class="modal__title">BMI table for adults</h2>
+        <table class="modal__table">
+            <tr>
+                <th class="modal__table__header">Category</th>
+                <th class="modal__table__header">BMI range - kg/m&#178;</th>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Severe Thinness</td>
+                <td class="modal__table__row text-small">&#60;16</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Moderate Thinness</td>
+                <td class="modal__table__row text-small">16 - 17</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Mild Thinness</td>
+                <td class="modal__table__row text-small">17 - 18.5</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Normal</td>
+                <td class="modal__table__row text-small">18.5 - 25</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Overweight</td>
+                <td class="modal__table__row text-small">25 - 30</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Obese Class I</td>
+                <td class="modal__table__row text-small">30 - 35</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Obese Class II</td>
+                <td class="modal__table__row text-small">35 - 40</td>
+            </tr>
+            <tr>
+                <td class="modal__table__row text-small">Obese Class III</td>
+                <td class="modal__table__row text-small">&#62;40</td>
+            </tr>
+        </table>
+    </section>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div>
+            <p>Copyright <strong><span>BMI Calculator</span></strong><br>All Rights Reserved</p>
+        </div>
+
+        <div>
+            <p>Designed by : <a href="https://www.linkedin.com/in/divyansh-bansal-555ic/" target="_blank"> <br>Divyansh Bansal</a></p>
+        </div>
+    </footer><!-- End Footer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <!-- Template Main JS File 
+        -->
+    <script src="assets/js/main.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+</body></html>
